@@ -12,17 +12,20 @@ include 'lib/Database.php';
 
  <div class="myform">
  <?php
+   //Ready image for uploading
    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $permited  = array('jpg', 'jpeg', 'png', 'gif');
     $file_name = $_FILES['image']['name'];
     $file_size = $_FILES['image']['size'];
     $file_temp = $_FILES['image']['tmp_name'];
 
+    //Generate unique image name
     $div = explode('.', $file_name);
     $file_ext = strtolower(end($div));
     $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
     $uploaded_image = "uploads/".$unique_image;
 
+     //Image validation
     if (empty($file_name)) {
      echo "<span class='error'>Please Select any Image !</span>";
     }elseif ($file_size >1048567) {
@@ -32,7 +35,9 @@ include 'lib/Database.php';
      echo "<span class='error'>You can upload only:-"
      .implode(', ', $permited)."</span>";
     } else{
+      //Store image into folder.
     move_uploaded_file($file_temp, $uploaded_image);
+      //Store image into database.
     $query = "INSERT INTO tbl_image(image) 
     VALUES('$uploaded_image')";
     $inserted_rows = $db->insert($query);
