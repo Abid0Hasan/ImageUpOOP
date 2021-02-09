@@ -14,7 +14,7 @@ include 'lib/Database.php';
  <?php
  //Ready image for upload
  if($_SERVER["REQUEST_METHOD"] == "POST"){
-  $permitted = array('jpg','jpeg','png','gif');
+  $permited = array('jpg','jpeg','png','gif');
   $file_name = $_FILES['image']['name']; 
   $file_size = $_FILES['image']['size']; 
   $file_temp = $_FILES['image']['tmp_name'];
