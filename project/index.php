@@ -20,10 +20,10 @@ include 'lib/Database.php';
     $file_temp = $_FILES['image']['tmp_name'];
 
     //Generate unique image name
-    $div = explode('.', $file_name);
-    $file_ext = strtolower(end($div));
-    $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
-    $uploaded_image = "uploads/".$unique_image;
+    $div = explode('.', $file_name);  //Division
+    $file_ext = strtolower(end($div)); //Extension
+    $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext; //Unique name generate
+    $uploaded_image = "uploads/".$unique_image; //File upload
 
      //Image validation
     if (empty($file_name)) {
